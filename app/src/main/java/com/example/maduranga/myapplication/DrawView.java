@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -22,9 +23,6 @@ public class DrawView extends View {
     private Paint player2;
     private boolean touching;
 
-    private Paint resetButtonPaint;
-    private Rect resetButtonRect;
-
     private List<Entry> rows;
     private List<Entry> columns;
     private List<Entry> diagonals;
@@ -32,18 +30,24 @@ public class DrawView extends View {
 
     public DrawView(Context context) {
         super(context);
-
         init();
     }
 
-    private void init() {
+    public DrawView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    public DrawView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        init();
+    }
+
+    public void init() {
 
         squares = new ArrayList<>();
 
         initPaints();
-
-        int fullLength = getResources().getDisplayMetrics().widthPixels;
-        resetButtonRect = new Rect(50, fullLength + 100, fullLength - 50, fullLength + 200);
 
         drawGrid();
 
@@ -76,9 +80,6 @@ public class DrawView extends View {
         boarderPaint.setStyle(Paint.Style.STROKE);
         boarderPaint.setColor(Color.BLACK);
         boarderPaint.setStrokeWidth(5);
-
-        resetButtonPaint = new Paint();
-        resetButtonPaint.setColor(Color.GREEN);
     }
 
     protected void drawGrid() {
@@ -115,8 +116,6 @@ public class DrawView extends View {
             }
         }
 
-        canvas.drawRect(resetButtonRect, resetButtonPaint);
-
         if (touching) {
             if (chance == Player.PLAYER_1) {
                 chance = Player.PLAYER_2;
@@ -143,27 +142,17 @@ public class DrawView extends View {
                 }
             }
         }
-
     }
 
     protected void showWinner(Player player) {
         Context context = getContext();
         Intent intent = new Intent(context, WinActivity.class);
-        String message = "Player " + player.name() + " has won ";;
+        String message = "Player \"" + player.getName() + "\" has won ";
 
         intent.putExtra(Constants.EXTRA_MESSAGE, message);
         context.startActivity(intent);
     }
 
-    public void launchSecondActivity(Player player) {
-
-        Context context = getContext();
-        Intent intent = new Intent(context, WinActivity.class);
-        String message = "Player " + player.name() + " has won ";;
-
-        intent.putExtra(Constants.EXTRA_MESSAGE, message);
-        context.startActivity(intent);
-    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -173,11 +162,6 @@ public class DrawView extends View {
         int touchY = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (resetButtonRect.contains(touchX, touchY)) {
-                    init();
-                    invalidate();
-                    return true;
-                }
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
                         if (squares.get(i).get(j).getRect().contains(touchX, touchY)) {

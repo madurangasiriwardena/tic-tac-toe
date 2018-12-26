@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">Tuk-Tok-Tik</string>
+    <string name="app_name">Tic-Tac-Toe</string>
     <string name="winner_message">Congratulations</string>
+    <string name="reset">Reset</string>
 </resources>
