@@ -18,4 +18,12 @@ public class WinActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.text_message);
         textView.setText(message);
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        final DrawView view = findViewById(R.id.myview);
+//        view.init();
+//        view.invalidate();
+//        super.onBackPressed();
+//    }
 }

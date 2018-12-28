@@ -1,5 +1,7 @@
 package com.example.maduranga.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,12 +14,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button button = findViewById(R.id.resetbutton);
+        final Button button = findViewById(R.id.twoplayer);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DrawView myView = findViewById(R.id.myview);
-                myView.init();
-                myView.invalidate();
+                Intent myIntent = new Intent(MainActivity.this, SinglePlayerActivity.class);
+                MainActivity.this.startActivity(myIntent);
             }
         });
     }
