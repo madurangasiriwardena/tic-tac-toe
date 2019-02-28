@@ -153,7 +153,6 @@ public class DrawView extends View {
         context.startActivity(intent);
     }
 
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         performClick();

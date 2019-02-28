@@ -15,15 +15,14 @@ public class WinActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message =
                 intent.getStringExtra(Constants.EXTRA_MESSAGE);
-        TextView textView = (TextView) findViewById(R.id.text_message);
+        TextView textView = findViewById(R.id.text_message);
         textView.setText(message);
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        final DrawView view = findViewById(R.id.myview);
-//        view.init();
-//        view.invalidate();
-//        super.onBackPressed();
-//    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(WinActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SinglePlayerActivity">
+    tools:context=".TwoPlayerActivity">
 
     <com.example.maduranga.myapplication.DrawView
         android:id="@+id/myview"

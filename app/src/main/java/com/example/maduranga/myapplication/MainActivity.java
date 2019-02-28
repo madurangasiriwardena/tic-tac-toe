@@ -1,6 +1,5 @@
 package com.example.maduranga.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,11 +16,9 @@ public class MainActivity extends AppCompatActivity {
         final Button button = findViewById(R.id.twoplayer);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, SinglePlayerActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, TwoPlayerActivity.class);
                 MainActivity.this.startActivity(myIntent);
             }
         });
     }
-
-    
 }
